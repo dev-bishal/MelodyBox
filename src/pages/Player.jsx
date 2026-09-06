@@ -122,7 +122,6 @@ export default function Player() {
     repeat,
     volume,
     toggle,
-    stop,
     next,
     prev,
     seek,
@@ -205,23 +204,6 @@ export default function Player() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gray-900 rounded-full z-10"></div>
                 <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-full"></div>
               </div>
-
-              <div className="mt-8 flex justify-center space-x-6">
-                <button
-                  onClick={toggle}
-                  className="w-16 h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center shadow-lg"
-                  aria-label={isPlaying ? 'Pause' : 'Play'}
-                >
-                  <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'} text-xl`}></i>
-                </button>
-                <button
-                  onClick={stop}
-                  className="w-12 h-12 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex items-center justify-center self-center"
-                  aria-label="Stop"
-                >
-                  <i className="fas fa-stop"></i>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -254,9 +236,7 @@ export default function Player() {
               <input
                 type="range"
                 className="progress-large w-full relative z-10"
-                style={{
-                  background: `linear-gradient(to right, #6366f1 ${progress}%, transparent ${progress}%)`,
-                }}
+                style={{ '--progress': `${progress}%` }}
                 min="0"
                 max={duration || 0}
                 step="0.1"

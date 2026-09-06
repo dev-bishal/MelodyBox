@@ -1,0 +1,26 @@
+{
+  "name": "MelodyBox — Web Music Player",
+  "short_name": "MelodyBox",
+  "description": "Play your music library in the browser.",
+  "start_url": ".",
+  "scope": ".",
+  "id": "melodybox",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#4f46e5",
+  "categories": ["music", "entertainment"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Now Playing", "url": "player" },
+    { "name": "All Songs", "url": "songs" }
+  ]
+}

@@ -7,6 +7,13 @@ import {
   useState,
 } from 'react'
 import { asset, getSong, songs } from '../lib/library.js'
+import {
+  bindMediaSessionActions,
+  setPlaybackState,
+  syncPositionState,
+  updateMediaSession,
+  updateTab,
+} from '../lib/nowPlaying.js'
 
 const PlayerContext = createContext(null)
 
@@ -40,6 +47,9 @@ export function PlayerProvider({ children }) {
   const [shuffle, setShuffle] = useState(false)
   const [repeat, setRepeat] = useState(false)
   const [volume, setVolume] = useState(0.8)
+  // A restored queue is not a playing queue: the tab and the OS controls stay
+  // out of the way until the user actually starts something.
+  const [started, setStarted] = useState(false)
 
   const current = queue[index] || null
 
@@ -71,7 +81,15 @@ export function PlayerProvider({ children }) {
   useEffect(() => {
     const audio = audioRef.current
     const onTime = () => setCurrentTime(audio.currentTime)
-    const onMeta = () => setDuration(audio.duration)
+    const onMeta = () => {
+      setDuration(audio.duration)
+      syncPositionState(audio)
+    }
+    const onSeeked = () => syncPositionState(audio)
+    // The browser can start or stop playback on its own (an incoming call, a
+    // headset button, another app taking audio focus) — follow the element.
+    const onPlay = () => setIsPlaying(true)
+    const onPause = () => setIsPlaying(false)
     const onEnded = () => {
       const { queue: q, index: i, shuffle: sh, repeat: rp } = stateRef.current
       if (!q.length) return
@@ -93,12 +111,26 @@ export function PlayerProvider({ children }) {
     }
     audio.addEventListener('timeupdate', onTime)
     audio.addEventListener('loadedmetadata', onMeta)
+    audio.addEventListener('seeked', onSeeked)
+    audio.addEventListener('play', onPlay)
+    audio.addEventListener('pause', onPause)
     audio.addEventListener('ended', onEnded)
     return () => {
       audio.removeEventListener('timeupdate', onTime)
       audio.removeEventListener('loadedmetadata', onMeta)
+      audio.removeEventListener('seeked', onSeeked)
+      audio.removeEventListener('play', onPlay)
+      audio.removeEventListener('pause', onPause)
       audio.removeEventListener('ended', onEnded)
     }
+  }, [])
+
+  // Browsers only surface OS media controls for media attached to the page, so
+  // keep the (invisible) audio element in the document while the app is up.
+  useEffect(() => {
+    const audio = audioRef.current
+    document.body.appendChild(audio)
+    return () => audio.remove()
   }, [])
 
   useEffect(() => {
@@ -132,15 +164,20 @@ export function PlayerProvider({ children }) {
       else playQueue([...q, song], q.length)
     }
 
-    const toggle = () => {
+    const play = () => {
       if (!stateRef.current.queue.length) return
-      if (audio().paused) {
-        audio().play().catch(() => {})
-        setIsPlaying(true)
-      } else {
-        audio().pause()
-        setIsPlaying(false)
-      }
+      audio().play().catch(() => setIsPlaying(false))
+      setIsPlaying(true)
+    }
+
+    const pause = () => {
+      audio().pause()
+      setIsPlaying(false)
+    }
+
+    const toggle = () => {
+      if (audio().paused) play()
+      else pause()
     }
 
     const stop = () => {
@@ -169,6 +206,7 @@ export function PlayerProvider({ children }) {
     const seek = (t) => {
       audio().currentTime = t
       setCurrentTime(t)
+      syncPositionState(audio())
     }
 
     const skip = (delta) => {
@@ -230,6 +268,8 @@ export function PlayerProvider({ children }) {
     return {
       playQueue,
       playSong,
+      play,
+      pause,
       toggle,
       stop,
       next: () => step(1),
@@ -246,6 +286,44 @@ export function PlayerProvider({ children }) {
       setVolume,
     }
   }, [])
+
+  useEffect(() => {
+    if (isPlaying) setStarted(true)
+  }, [isPlaying])
+
+  const nowPlaying = started ? current : null
+
+  // Browser tab: the title and favicon follow the playing track
+  useEffect(() => {
+    updateTab(nowPlaying, isPlaying)
+  }, [nowPlaying, isPlaying])
+
+  // Notification panel / lock screen / desktop media overlay
+  useEffect(() => {
+    updateMediaSession(nowPlaying)
+    syncPositionState(audioRef.current)
+  }, [nowPlaying])
+
+  useEffect(() => {
+    setPlaybackState(nowPlaying ? (isPlaying ? 'playing' : 'paused') : 'none')
+    syncPositionState(audioRef.current)
+  }, [nowPlaying, isPlaying])
+
+  // Their buttons drive the same player the UI does
+  useEffect(
+    () =>
+      bindMediaSessionActions({
+        play: api.play,
+        pause: api.pause,
+        stop: api.stop,
+        previoustrack: api.prev,
+        nexttrack: api.next,
+        seekbackward: (d) => api.skip(-(d.seekOffset || 10)),
+        seekforward: (d) => api.skip(d.seekOffset || 10),
+        seekto: (d) => api.seek(d.seekTime),
+      }),
+    [api],
+  )
 
   const value = {
     queue,
