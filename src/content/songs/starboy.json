@@ -1,7 +1,10 @@
 {
   "id": "starboy",
   "title": "Starboy",
-  "artist": "Weeknd, Dank Punk",
+  "artist": [
+    "Weeknd",
+    "Daft Punk"
+  ],
   "date": "2026-09-04",
   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/0e/d4/bd/0ed4bd74-cff6-4aab-dd94-947256c613fb/23UMGIM22526.rgb.jpg/1200x1200bf-60.jpg",
   "audio": "/media/audio/the-weeknd-starboy-ft.-daft-punk-official-video-ft.-daft-punk.mp3",
