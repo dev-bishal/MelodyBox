@@ -1,7 +1,9 @@
 {
   "id": "neon-horizon",
   "title": "Neon Horizon",
-  "artist": "Nova Skyline",
+  "artist": [
+    "Nova Skyline"
+  ],
   "album": "Midnight Drive",
   "genre": "Synthwave",
   "date": "2026-08-20",

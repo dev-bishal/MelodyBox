@@ -5,6 +5,7 @@ import Songs from './pages/Songs.jsx'
 import Albums from './pages/Albums.jsx'
 import Artists from './pages/Artists.jsx'
 import Playlists from './pages/Playlists.jsx'
+import Genres from './pages/Genres.jsx'
 import Player from './pages/Player.jsx'
 import Detail from './pages/Detail.jsx'
 import { useEffect } from 'react'
@@ -28,6 +29,8 @@ export default function App() {
         <Route path="/artists/:id" element={<Detail type="artist" />} />
         <Route path="/playlists" element={<Playlists />} />
         <Route path="/playlists/:id" element={<Detail type="playlist" />} />
+        <Route path="/genres" element={<Genres />} />
+        <Route path="/genres/:id" element={<Detail type="genre" />} />
         <Route path="/player" element={<Player />} />
       </Routes>
     </Layout>

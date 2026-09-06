@@ -29,7 +29,15 @@ collections:
     fields:
       - { name: id, label: 'ID (unique slug, e.g. my-song)', widget: string }
       - { name: title, label: Title, widget: string }
-      - { name: artist, label: 'Artist (must match an Artist name)', widget: string }
+      - name: artist
+        label: Artists
+        widget: relation
+        collection: artists
+        search_fields: [name]
+        value_field: name
+        display_fields: [name]
+        multiple: true
+        hint: 'Pick one or more artists. Create them under Artists first if they are not listed.'
       - { name: album, label: 'Album (must match an Album title)', widget: string, required: false }
       - { name: genre, label: Genre, widget: string, required: false }
       - { name: date, label: 'Date Added', widget: string, hint: 'YYYY-MM-DD' }
@@ -75,7 +83,11 @@ collections:
     fields:
       - { name: id, label: 'ID (unique slug)', widget: string }
       - { name: name, label: Name, widget: string }
-      - { name: genre, label: Genre, widget: string }
+      - name: genre
+        label: Genre
+        widget: list
+        required: false
+        hint: 'Optional. Separate multiple genres with commas, e.g. Chill, Lo-Fi'
       - { name: image, label: 'Image (URL)', widget: string }
       - name: color
         label: 'Overlay Gradient'

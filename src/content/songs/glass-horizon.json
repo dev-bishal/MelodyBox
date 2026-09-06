@@ -1,7 +1,9 @@
 {
   "id": "glass-horizon",
   "title": "Glass Horizon",
-  "artist": "Crystal Harbor",
+  "artist": [
+    "Crystal Harbor"
+  ],
   "album": "Stillwater",
   "genre": "Ambient",
   "date": "2026-05-18",

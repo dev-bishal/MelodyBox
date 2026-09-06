@@ -1,7 +1,9 @@
 {
   "id": "drifting",
   "title": "Drifting",
-  "artist": "Luna Waves",
+  "artist": [
+    "Luna Waves"
+  ],
   "album": "Ocean Dreams",
   "genre": "Chill",
   "date": "2026-07-01",

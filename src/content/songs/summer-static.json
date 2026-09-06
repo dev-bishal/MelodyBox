@@ -1,7 +1,9 @@
 {
   "id": "summer-static",
   "title": "Summer Static",
-  "artist": "The Midnight Echo",
+  "artist": [
+    "The Midnight Echo"
+  ],
   "album": "Echoes of Summer",
   "genre": "Indie Rock",
   "date": "2026-07-28",

@@ -1,7 +1,9 @@
 {
   "id": "moonlit-tide",
   "title": "Moonlit Tide",
-  "artist": "Luna Waves",
+  "artist": [
+    "Luna Waves"
+  ],
   "album": "Ocean Dreams",
   "genre": "Chill",
   "date": "2026-07-12",
