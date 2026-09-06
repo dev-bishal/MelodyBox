@@ -38,11 +38,12 @@ input[type='range'] {
   appearance: none;
   height: 4px;
   border-radius: 2px;
-  background: #d1d5db;
+  --range-track: #d1d5db;
+  background: var(--range-track);
   outline: none;
 }
 .dark input[type='range'] {
-  background: #4a5568;
+  --range-track: #4a5568;
 }
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -66,6 +67,13 @@ input[type='range']::-moz-range-thumb {
 input[type='range'].progress-large {
   height: 6px;
   border-radius: 3px;
+  /* Elapsed portion is filled; the rest keeps the same track colour as the
+     volume slider. --progress is set inline by the Player page. */
+  background: linear-gradient(
+    to right,
+    #6366f1 var(--progress, 0%),
+    var(--range-track) var(--progress, 0%)
+  );
 }
 input[type='range'].progress-large::-webkit-slider-thumb {
   width: 18px;

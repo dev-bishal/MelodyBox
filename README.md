@@ -12,6 +12,8 @@ A Spotify-style music player web app built with **React**, **Tailwind CSS 4**, a
   - remove songs
   - add songs from the whole library (Add Songs modal, or the + button on any song)
 - 🎧 **Persistent playback** — music keeps playing across page changes; the mini player at the bottom opens the full Player when clicked
+- 🔔 **Now playing everywhere** — the browser tab shows the track title and its cover art as the favicon, and playback appears in the mobile notification panel / lock screen and the desktop browser's media controls, with working play, pause, next, previous and scrubbing
+- 📥 **Installable PWA** — install it from the browser and it runs in its own window; the app shell, icons and fonts are cached, so it opens and navigates without a connection
 - 🌙 Light/dark theme with saved preference
 - 📱 Fully responsive (mobile bottom nav + slide-in sidebar)
 
@@ -23,6 +25,21 @@ npm run dev
 ```
 
 Open http://localhost:5173.
+
+## Installing as an app
+
+The production build ships a web app manifest and a service worker (`dist/sw.js`,
+generated at build time by the plugin in `vite.config.js` from
+`src/service-worker.js`). Chrome, Edge and Android offer "Install app"; on iOS use
+Share → Add to Home Screen.
+
+The service worker precaches the app shell and serves it on every navigation, so
+routes load offline. Audio is deliberately left to the network — it is streamed
+with Range requests that a cached whole-file response cannot answer — and covers
+hosted off-site need a connection the first time they are shown.
+
+Service workers only run over HTTPS or on `localhost`, so use `npm run build &&
+npm run preview` to try it locally; `npm run dev` does not register one.
 
 ## Content management (Decap CMS)
 

@@ -32,7 +32,14 @@ collections:
       - { name: artist, label: 'Artist (must match an Artist name)', widget: string }
       - { name: album, label: 'Album (must match an Album title)', widget: string, required: false }
       - { name: genre, label: Genre, widget: string, required: false }
-      - { name: date, label: 'Date Added', widget: string, hint: 'YYYY-MM-DD' }
+      # picker_utc keeps the stored day from shifting with the editor's timezone
+      - name: date
+        label: 'Date Added'
+        widget: datetime
+        format: 'YYYY-MM-DD'
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: true
       - { name: cover, label: 'Cover Image (URL or upload)', widget: string }
       - { name: audio, label: 'Audio File (MP3)', widget: file, media_folder: '/public/media/audio', public_folder: '/media/audio' }
       - { name: duration, label: 'Duration (M:SS)', widget: string }
