@@ -1,7 +1,9 @@
 {
   "id": "tidal-glow",
   "title": "Tidal Glow",
-  "artist": "Luna Waves",
+  "artist": [
+    "Luna Waves"
+  ],
   "album": "Ocean Dreams",
   "genre": "Chill",
   "date": "2026-07-20",

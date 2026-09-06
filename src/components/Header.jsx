@@ -7,6 +7,7 @@ const titles = {
   '/albums': ['Albums', 'Browse albums in your library'],
   '/artists': ['Artists', 'Browse artists in your library'],
   '/playlists': ['Playlists', 'Your curated collections'],
+  '/genres': ['Genres', 'Browse genres in your library'],
   '/player': ['Now Playing', 'Control playback and edit your queue'],
 }
 

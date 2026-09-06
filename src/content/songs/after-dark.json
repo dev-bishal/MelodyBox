@@ -1,11 +1,14 @@
 {
-  "id": "after-dark",
-  "title": "After Dark",
-  "artist": "Neon District",
-  "album": "City Lights",
   "genre": "Electronic",
+  "artist": [
+    "Neon District",
+    "Nova Skyline"
+  ],
   "date": "2026-06-08",
-  "cover": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80",
+  "album": "City Lights",
+  "duration": "0:20",
   "audio": "/media/audio/demo-track-3.mp3",
-  "duration": "0:20"
+  "cover": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80",
+  "title": "After Dark",
+  "id": "after-dark"
 }

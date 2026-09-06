@@ -1,7 +1,9 @@
 {
   "id": "midnight-drive",
   "title": "Midnight Drive",
-  "artist": "Nova Skyline",
+  "artist": [
+    "Nova Skyline"
+  ],
   "album": "Midnight Drive",
   "genre": "Synthwave",
   "date": "2026-08-18",

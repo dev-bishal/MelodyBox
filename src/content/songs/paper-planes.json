@@ -1,7 +1,9 @@
 {
   "id": "paper-planes",
   "title": "Paper Planes",
-  "artist": "The Midnight Echo",
+  "artist": [
+    "The Midnight Echo"
+  ],
   "album": "Echoes of Summer",
   "genre": "Indie Rock",
   "date": "2026-08-05",

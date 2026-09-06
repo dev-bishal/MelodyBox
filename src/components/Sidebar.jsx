@@ -8,6 +8,7 @@ const menu = [
   { to: '/playlists', icon: 'fa-compact-disc', label: 'Playlists' },
   { to: '/artists', icon: 'fa-microphone-alt', label: 'Artists' },
   { to: '/albums', icon: 'fa-record-vinyl', label: 'Albums' },
+  { to: '/genres', icon: 'fa-guitar', label: 'Genres' },
 ]
 
 export default function Sidebar({ open, onClose }) {

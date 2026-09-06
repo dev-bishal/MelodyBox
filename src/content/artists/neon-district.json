@@ -1,7 +1,9 @@
 {
   "id": "neon-district",
   "name": "Neon District",
-  "genre": "Electronic",
+  "genre": [
+    "Electronic"
+  ],
   "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80",
   "color": "from-red-900 to-black"
 }

@@ -1,7 +1,9 @@
 {
   "id": "skyline-pulse",
   "title": "Skyline Pulse",
-  "artist": "Neon District",
+  "artist": [
+    "Neon District"
+  ],
   "album": "City Lights",
   "genre": "Electronic",
   "date": "2026-06-22",

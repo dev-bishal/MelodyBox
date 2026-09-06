@@ -1,7 +1,9 @@
 {
   "id": "willow-lane",
   "title": "Willow Lane",
-  "artist": "Ember & Oak",
+  "artist": [
+    "Ember & Oak"
+  ],
   "album": "Acoustic Sessions",
   "genre": "Folk",
   "date": "2026-05-30",

@@ -4,6 +4,8 @@ import {
   albumSongs,
   artistSongs,
   asset,
+  genreArtists,
+  genreSongs,
   playlistSongs,
 } from '../lib/library.js'
 
@@ -83,6 +85,29 @@ export function PlaylistCard({ playlist }) {
   )
 }
 
+export function GenreCard({ genre }) {
+  const { playQueue } = usePlayer()
+  const list = genreSongs(genre)
+  const artistCount = genreArtists(genre).length
+  return (
+    <Link
+      to={`/genres/${genre.id}`}
+      className="group block bg-white dark:bg-gray-800 rounded-lg md:rounded-xl p-4 md:p-5 shadow hover:shadow-lg transition-shadow cursor-pointer"
+    >
+      <div
+        className={`relative w-full h-28 md:h-40 mb-3 md:mb-4 rounded-lg bg-gradient-to-r ${genre.color} flex items-center justify-center overflow-hidden`}
+      >
+        <i className={`fas ${genre.icon} text-white text-2xl md:text-4xl`}></i>
+        {list.length > 0 && <PlayOverlayButton onPlay={() => playQueue(list, 0)} />}
+      </div>
+      <h4 className="font-bold md:text-lg mb-1 truncate">{genre.name}</h4>
+      <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+        {list.length} songs • {artistCount} artists
+      </p>
+    </Link>
+  )
+}
+
 export function ArtistCard({ artist }) {
   const { playQueue } = usePlayer()
   const list = artistSongs(artist)
@@ -101,7 +126,9 @@ export function ArtistCard({ artist }) {
         <div className={`absolute inset-0 bg-gradient-to-t ${artist.color} opacity-60`}></div>
         <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4">
           <h4 className="font-bold text-base md:text-xl text-white">{artist.name}</h4>
-          <p className="text-white/80 text-xs md:text-sm">{artist.genre}</p>
+          {artist.genre && (
+            <p className="text-white/80 text-xs md:text-sm">{artist.genre}</p>
+          )}
         </div>
       </div>
       <div className="p-3 md:p-4 flex justify-between items-center">

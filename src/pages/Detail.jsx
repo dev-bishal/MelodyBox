@@ -1,12 +1,16 @@
 import { Link, useParams } from 'react-router-dom'
 import SongRow from '../components/SongRow.jsx'
+import { ArtistCard } from '../components/Cards.jsx'
 import { usePlayer } from '../context/PlayerContext.jsx'
 import {
   albumSongs,
   artistSongs,
   asset,
+  genreArtists,
+  genreSongs,
   getAlbum,
   getArtist,
+  getGenre,
   getPlaylist,
   playlistSongs,
   totalDuration,
@@ -31,12 +35,19 @@ const config = {
     label: 'Playlist',
     backTo: '/playlists',
   },
+  genre: {
+    get: getGenre,
+    songsOf: genreSongs,
+    artistsOf: genreArtists,
+    label: 'Genre',
+    backTo: '/genres',
+  },
 }
 
 export default function Detail({ type }) {
   const { id } = useParams()
   const { playQueue, addToQueue } = usePlayer()
-  const { get, songsOf, label, backTo } = config[type]
+  const { get, songsOf, artistsOf, label, backTo } = config[type]
   const item = get(id)
 
   if (!item) {
@@ -53,8 +64,12 @@ export default function Detail({ type }) {
   }
 
   const list = songsOf(item)
+  const relatedArtists = artistsOf ? artistsOf(item) : []
   const name = item.title || item.name
   const image = item.cover || item.image
+  const subtitle =
+    item.description ||
+    [item.artist, item.genre, item.year].filter(Boolean).join(' • ')
 
   return (
     <div>
@@ -80,10 +95,9 @@ export default function Detail({ type }) {
             {label}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{name}</h1>
-          <p className="text-white/90 text-sm md:text-base mb-4">
-            {item.description ||
-              [item.artist, item.genre, item.year].filter(Boolean).join(' • ')}
-          </p>
+          {subtitle && (
+            <p className="text-white/90 text-sm md:text-base mb-4">{subtitle}</p>
+          )}
           <p className="text-white/80 text-sm mb-5">
             {list.length} songs • {totalDuration(list)}
           </p>
@@ -104,7 +118,21 @@ export default function Detail({ type }) {
         </div>
       </div>
 
+      {relatedArtists.length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-lg md:text-xl font-bold mb-4">Artists</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {relatedArtists.map((artist) => (
+              <ArtistCard key={artist.id} artist={artist} />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Song list */}
+      {relatedArtists.length > 0 && (
+        <h3 className="text-lg md:text-xl font-bold mb-4">Songs</h3>
+      )}
       <div className="space-y-1">
         {list.map((song, i) => (
           <SongRow key={song.id} song={song} indexInList={i} list={list} showAlbum={type !== 'album'} />
