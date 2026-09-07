@@ -1,10 +1,12 @@
 {
   "id": "make-you-mine",
   "title": "Make You Mine",
-  "artist": "Madison Beer",
+  "artist": [
+    "Madison Beer"
+  ],
   "genre": "Pop",
-  "date": "2026-09-06",
+  "date": "2026-09-07",
   "cover": "https://i.pinimg.com/736x/36/ac/22/36ac22b8358963cce1f30b03bc5425e1.jpg",
-  "audio": "/media/audio/madison-beer-make-you-mine-official-music-video-.mp3",
+  "audio": "/media/audio/madison-beer-make-you-mine-official-visualizer-.mp3",
   "duration": "03:42"
 }
