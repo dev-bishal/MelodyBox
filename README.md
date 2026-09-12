@@ -1,6 +1,6 @@
 # MelodyBox — Web Music Player
 
-![Melody Box React Music player](./public/screenshot.png)
+![Melody Box React Music player](./public/Screenshot.png)
 
 
 A Spotify-style music player web app built with **React**, **Tailwind CSS 4**, and **Decap CMS**, designed for hosting on **GitHub Pages**.
