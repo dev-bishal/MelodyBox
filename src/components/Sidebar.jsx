@@ -40,10 +40,14 @@ export default function Sidebar({ open, onClose }) {
             <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center">
               <i className="fas fa-music text-white"></i>
             </div>
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Melody
-              <span className="text-indigo-600 dark:text-indigo-400">Box</span>
-            </h1>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+                Melody
+                <span className="text-indigo-600 dark:text-indigo-400">Box</span>
+              </h1>
+              <span>By: <a className="text-indigo-600 dark:text-indigo-400" href="https://bishal-biswas.github.io/">Bishal Biswas</a></span>
+            </div>
+
           </div>
           <button
             onClick={onClose}
