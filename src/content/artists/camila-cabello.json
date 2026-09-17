@@ -1,6 +1,9 @@
 {
-  "color": "from-orange-900 to-red-700",
-  "id": "Camila Cabello",
-  "name": "Camila Cabello",
-  "image": "https://wallpapercave.com/wp/wp14816403.webp"
+  "id": "PSY",
+  "name": "PSY",
+  "genre": [
+    "High-energy Electronic music"
+  ],
+  "image": "https://th.bing.com/th/id/R.f0245ca5cf982b644fe8385097183369?rik=Zqi4jIpd08bqVg&riu=http%3a%2f%2fmattv.ca%2fwp-content%2fuploads%2f2013%2f04%2fPSY-GANGNAM-STYLE.jpg&ehk=wiT2fnnwWZFXDFqXZjW6vjsasa4dccyV7q0ASLPNiWw%3d&risl=&pid=ImgRaw&r=0",
+  "color": "from-blue-900 to-purple-800"
 }
