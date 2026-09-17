@@ -1,0 +1,14 @@
+{
+  "color": "from-gray-800 to-black",
+  "image": "https://www.rollingstone.com/wp-content/uploads/2021/04/avicii-official-biography.jpg?resize=1800",
+  "id": "Avicii",
+  "name": "Avicii",
+  "genre": [
+    "Progressive house",
+    "pop-oriented",
+    "Electronic dance music (EDM)",
+    "Folk",
+    "Country",
+    "Pop"
+  ]
+}
