@@ -1,0 +1,9 @@
+{
+  "color": "from-red-900 to-black",
+  "id": "Pitbull",
+  "name": "Pitbull",
+  "genre": [
+    "Rap"
+  ],
+  "image": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Pitbull_the_rapper_in_Sydney%2C_Australia_(2012).jpg"
+}
