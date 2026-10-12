@@ -1,0 +1,12 @@
+{
+  "color": "from-blue-900 to-purple-800",
+  "id": "Hans Zimmer",
+  "name": "Hans Zimmer",
+  "genre": [
+    "Orchestral",
+    "Neo-classical",
+    "Ambient",
+    "Electronic"
+  ],
+  "image": "https://hollywoodmask.com/uploads/images/Hans-Zimmer.jpg"
+}
